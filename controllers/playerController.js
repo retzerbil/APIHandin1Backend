@@ -18,4 +18,16 @@ const getPlayers = async (req, res) => {
     res.status(200).send(players);
 };
 
-module.exports = {createPlayer, getPlayers}
+const updatePlayer = async (req, res) => {
+    const user = await Players.findOne({ where: { id: req.params.id } });
+    user.name = req.body.name;
+    user.jersey = req.body.jersey;
+    user.position = req.body.position;
+    user.team = req.body.team;
+
+    await user.save();
+
+    res.status(200).send(user);
+}
+
+module.exports = { createPlayer, getPlayers, updatePlayer }

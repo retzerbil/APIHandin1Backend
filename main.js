@@ -23,6 +23,10 @@ app.get('/getPlayers',(req,res)=>{
     createPlayer.getPlayers(req,res);
 });
 
+app.put('/updatePlayer/:id',(req,res)=>{
+    createPlayer.updatePlayer(req,res);
+});
+
 app.listen(port, async () =>{
     await migrationhelper.migrate();
     console.log(`Example app listening on port ${port}`);
