@@ -5,3 +5,7 @@ Content-Type: application/json; charset=utf-8
 {
     "name": "John Doe","jersey":1,"position":"QB","team":"DAL"
 }
+
+
+###GET ALL
+GET http://localhost:3000/getPlayers

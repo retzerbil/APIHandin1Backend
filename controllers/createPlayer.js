@@ -13,4 +13,9 @@ const createPlayer = async (req, res) => {
     res.status(201).send("");
 };
 
-module.exports = {createPlayer}
+const getPlayers = async (req, res) => {
+    const players = await Players.findAll();
+    res.status(200).send(players);
+};
+
+module.exports = {createPlayer, getPlayers}
