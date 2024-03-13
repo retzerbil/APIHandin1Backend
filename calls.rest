@@ -1,0 +1,7 @@
+### POST New User 
+POST http://localhost:3000/createPlayer 
+Content-Type: application/json; charset=utf-8
+
+{
+    "name": "John Doe","jersey":1,"position":"QB","team":"DAL"
+}

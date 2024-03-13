@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 //const {Product} = require('./models');
 //const {Op} = require('sequelize')
+const createPlayer = require("./controllers/createPlayer.js");
 const migrationhelper = require('./migrationhelper');
 const app = express();
 const port = 3000;
@@ -14,6 +15,9 @@ app.use(cors({
 }))
 
 
+app.post('/createPlayer',(req,res)=>{
+    createPlayer.createPlayer(req,res);
+})
 
 app.listen(port, async () =>{
     await migrationhelper.migrate();
