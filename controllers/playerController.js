@@ -18,6 +18,10 @@ const getPlayers = async (req, res) => {
     const q = req.query.q || '';
     const sortCol = req.query.sortCol || 'name';
     const sortOrder = req.query.sortOrder || 'asc';
+
+    const offset = Number(req.query.offset || 0);
+    const limit = Number(req.query.limit || 5);
+
     const players = await Players.findAll({
         where:{
             name:{
@@ -27,6 +31,8 @@ const getPlayers = async (req, res) => {
         order:[
             [sortCol, sortOrder]
         ],
+        offset:offset,
+        limit:limit
         }
 );
     res.status(200).send(players);
