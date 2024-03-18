@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 //const {Product} = require('./models');
 //const {Op} = require('sequelize')
-const createPlayer = require("./controllers/playerController.js");
+const playerController = require("./controllers/playerController.js");
 const migrationhelper = require('./migrationhelper');
 const app = express();
 const port = 3000;
@@ -16,15 +16,19 @@ app.use(cors({
 
 
 app.post('/createPlayer',(req,res)=>{
-    createPlayer.createPlayer(req,res);
+    playerController.createPlayer(req,res);
 });
 
 app.get('/getPlayers',(req,res)=>{
-    createPlayer.getPlayers(req,res);
+    playerController.getPlayers(req,res);
 });
 
 app.put('/updatePlayer/:id',(req,res)=>{
-    createPlayer.updatePlayer(req,res);
+    playerController.updatePlayer(req,res);
+});
+
+app.delete('/deletePlayer/:id',(req,res)=>{
+    playerController.deletePlayer(req,res);
 });
 
 app.listen(port, async () =>{

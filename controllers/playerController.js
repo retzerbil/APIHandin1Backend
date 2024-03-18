@@ -30,4 +30,8 @@ const updatePlayer = async (req, res) => {
     res.status(200).send(user);
 }
 
-module.exports = { createPlayer, getPlayers, updatePlayer }
+const deletePlayer = async (req, res) => {
+    await Players.destroy({ where: { id: req.params.id } });
+    res.status(200).send("");
+}
+module.exports = { createPlayer, getPlayers, updatePlayer, deletePlayer }
