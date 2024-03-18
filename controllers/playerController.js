@@ -1,4 +1,5 @@
 const { Players } = require('../models');
+const {Op} = require('sequelize')
 
 const createPlayer = async (req, res) => {
     const { name, jersey, position, team } = req.body;
@@ -14,7 +15,14 @@ const createPlayer = async (req, res) => {
 };
 
 const getPlayers = async (req, res) => {
-    const players = await Players.findAll();
+    const q = req.query.q || '';
+    const players = await Players.findAll({
+        where:{
+            name:{
+                [Op.like]: `%`+q+`%`
+            }
+        }
+});
     res.status(200).send(players);
 };
 
