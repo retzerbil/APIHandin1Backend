@@ -16,13 +16,19 @@ const createPlayer = async (req, res) => {
 
 const getPlayers = async (req, res) => {
     const q = req.query.q || '';
+    const sortCol = req.query.sortCol || 'name';
+    const sortOrder = req.query.sortOrder || 'asc';
     const players = await Players.findAll({
         where:{
             name:{
                 [Op.like]: `%`+q+`%`
             }
+        },
+        order:[
+            [sortCol, sortOrder]
+        ],
         }
-});
+);
     res.status(200).send(players);
 };
 
