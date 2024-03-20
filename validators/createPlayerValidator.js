@@ -10,8 +10,8 @@ const validatePlayer = [
     check('jersey')
         .trim()
         .escape()
-        .isInt()
-        .withMessage("Jersey must be a number"),
+        .isInt( {min:0} )
+        .withMessage("Jersey must be a number, and may not contain decimals and or negative numbers."),
     check('position')
         .trim()
         .escape()
