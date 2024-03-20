@@ -20,9 +20,9 @@ const getPlayers = async (req, res) => {
     const sortOrder = req.query.sortOrder || 'asc';
 
     const offset = Number(req.query.offset || 0);
-    const limit = Number(req.query.limit || 5);
+    const limit = Number(req.query.limit || 20);
 
-    const players = await Players.findAll({
+    const players = await Players.findAndCountAll({
         where:{
             name:{
                 [Op.like]: `%`+q+`%`
@@ -33,8 +33,7 @@ const getPlayers = async (req, res) => {
         ],
         offset:offset,
         limit:limit
-        }
-);
+        });
     res.status(200).send(players);
 };
 
