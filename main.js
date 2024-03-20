@@ -4,6 +4,7 @@ const cors = require('cors');
 //const {Product} = require('./models');
 //const {Op} = require('sequelize')
 const playerController = require("./controllers/playerController.js");
+const createPlayerValidator = require('./validators/createPlayerValidator');
 const migrationhelper = require('./migrationhelper');
 const app = express();
 const port = 3000;
@@ -15,7 +16,8 @@ app.use(cors({
 }))
 
 
-app.post('/createPlayer',(req,res)=>{
+app.post('/createPlayer' ,createPlayerValidator.validatePlayer,(req,res)=>{
+
     playerController.createPlayer(req,res);
 });
 
