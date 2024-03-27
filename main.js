@@ -25,7 +25,7 @@ app.get('/getPlayers',(req,res)=>{
     playerController.getPlayers(req,res);
 });
 
-app.put('/updatePlayer/:id',(req,res)=>{
+app.put('/updatePlayer/:id', createPlayerValidator.validatePlayer,(req,res)=>{
     playerController.updatePlayer(req,res);
 });
 
